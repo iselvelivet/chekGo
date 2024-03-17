@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+option go_package = "/Users/billard3000/Documents/GoProjects/ToDoList/";
+
+// Types
+
+message ToDo {
+    string key = 1;
+    string id = 2;
+    string title = 3;
+    string description = 4;
+    bool done = 5;
+    repeated string location_id = 6;
+    repeated string tag_id = 7;
+    string rev = 8;
+    string created = 9;
+    string deadline = 10;
+    repeated string user_id = 11;
+}
+
+message Location {
+    string key = 1;
+    string id = 2;
+    string name = 3;
+    string address = 4;
+    string rev = 5;
+}
+
+message Tag {
+    string key = 1;
+    string id = 2;
+    string name = 3;
+    string rev = 4;
+}
+
+message User {
+    string key = 1;
+    string id = 2;
+    string name = 3;
+    string email = 4;
+    string rev = 5;
+    string surname = 6;
+}
+
+message Edge {
+    string key = 1;
+    string id = 2;
+    string from = 3;
+    string to = 4;
+    string rev = 5;
+}
+
+message Error {
+    string identifier = 1;
+    string message = 2;
+}
+
+// Requests
+
+message Filters {
+    string sort = 1;
+    string order = 2;
+    uint64 limit = 3;
+    uint64 offset = 4;
+}
+
+message GenericRequest {
+    repeated string key = 1;
+    string id = 2;
+    string rev = 3;
+    Filters filters = 4;
+}
+
+// Responses
+
+message ToDoResponse {
+    repeated ToDo to_do = 1;
+    repeated Error error = 2;
+    uint64 total = 3;
+}
+
+message LocationResponse {
+    repeated Location location = 1;
+    repeated Error error = 2;
+    uint64 total = 3;
+}
+
+message TagResponse {
+    repeated Tag tag = 1;
+    repeated Error error = 2;
+    uint64 total = 3;
+}
+
+message UserResponse {
+    repeated User user = 1;
+    repeated Error error = 2;
+    uint64 total = 3;
+}
+
+message EdgeResponse {
+    repeated Edge edge = 1;
+    repeated Error error = 2;
+    uint64 total = 3;
+}
+
+message RevResponse {
+    string id = 1;
+    string key = 2;
+    string rev = 3;
+    string old_rev = 4;
+}
+
+message RevResponses {
+    repeated RevResponse rev_response = 1;
+}
+
+message RemoveRequest {
+    repeated string id = 1;
+}
+
+service ToDoGQLService {
+    
+}
